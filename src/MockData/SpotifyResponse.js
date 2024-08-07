@@ -1,4 +1,4 @@
-export default {
+const SpotifyResponse = {
   tracks: {
     href: "https://api.spotify.com/v1/search?query=track%253Espresso%252520artist%253SabrinaCarpenter&type=track&locale=en-US%2Cen%3Bq%3D0.9&offset=0&limit=1",
     items: [
@@ -456,3 +456,4 @@ export default {
     total: 750,
   },
 };
+export default SpotifyResponse;
