@@ -4,7 +4,7 @@ import SpotifyResponse from "../../MockData/SpotifyResponse";
 const songSlice = createSlice({
   name: "songs",
   initialState: {
-    songs: [SpotifyResponse],
+    songResponseList: [SpotifyResponse],
   },
 });
 

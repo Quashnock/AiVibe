@@ -9,7 +9,10 @@ const vibeSlice = createSlice({
   },
   reducers: {
     createSongList: (state) => {
-      state.songNameList = GeminiResponse.split(" / ").split("-");
+      state.songNameList = state.response
+        .split(" / ")
+        .map((song) => song.split("-"));
+      console.log(state.songNameList);
     },
   },
 });

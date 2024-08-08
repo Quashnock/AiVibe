@@ -20,6 +20,12 @@
   border-radius: 0.15em;
 }
 
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 #songTitle {
   font-family: "Syne", "Helvetica", sans-serif;
   font-size: 1.2rem;

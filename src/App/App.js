@@ -2,7 +2,7 @@ import "./App.css";
 import SongList from "../Components/SongListComponents/SongList";
 import Search from "../Components/Search/Search";
 
-function App() {
+function App({ store, dispatch }) {
   return (
     <>
       <div id="background">
@@ -26,8 +26,8 @@ function App() {
           </div>
           <hr id="headerLineBreak" role="presentation"></hr>
         </header>
-        <SongList />
-        <Search />
+        <SongList store={store} dispatch={dispatch} />
+        <Search store={store} dispatch={dispatch} />
       </div>
     </>
   );
