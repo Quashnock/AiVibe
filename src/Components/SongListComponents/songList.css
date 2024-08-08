@@ -1,0 +1,23 @@
+#songListContainer {
+  flex-basis: 80vh;
+  flex-grow: 1;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+  padding: 0.75em 0;
+}
+@media only screen and (orientation: landscape) {
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsla(0, 0%, 100%, 30%);
+    border-radius: 15px;
+  }
+}
