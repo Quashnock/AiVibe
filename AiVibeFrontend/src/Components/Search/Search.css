@@ -1,0 +1,57 @@
+#searchContainer {
+  flex-basis: 10vh;
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+form#vibeSearchForm {
+  width: 100%;
+  display: flex;
+  padding: 0.5em 1em;
+  background-color: hsl(0, 0%, 8%);
+  border-radius: 2em;
+}
+
+#searchTextBox {
+  flex-basis: 60%;
+  flex-grow: 1;
+  width: 100%;
+  background-color: transparent;
+  border: none !important;
+  font-size: 1.2rem;
+  line-height: 100%;
+  padding-left: 0.8em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Syne", "Helvetica", sans-serif;
+}
+
+#searchTextBox:focus {
+  outline: none;
+}
+#submitButton {
+  flex-basis: 15%;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  aspect-ratio: 1 /1;
+  padding: 0 auto;
+  cursor: pointer;
+}
+#submitButton:hover {
+  background-color: hsla(0, 0%, 50%, 10%);
+}
+
+#submitButton svg {
+  font-size: 1.6rem;
+}
+
+@media only screen and (orientation: landscape) {
+  #submitButton {
+    flex-basis: 5%;
+  }
+}
