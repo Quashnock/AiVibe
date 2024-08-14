@@ -6,6 +6,7 @@ function msToTimeCode(ms) {
   let seconds = Math.floor((ms % 60000) / 1000);
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
+
 function getArtistsString(artists) {
   let artistsString = artists[0].name;
   if (artistsString.length > 1) {
@@ -24,6 +25,7 @@ function Song({ song }) {
           href={song.album.external_urls.spotify}
           target="_blank"
           rel="noreferrer"
+          title="Link to Spotify Album"
         >
           <img
             id="songThumbnail"
@@ -36,7 +38,7 @@ function Song({ song }) {
             href={song.external_urls.spotify}
             target="_blank"
             rel="noreferrer"
-            title="Link to Spotify"
+            title="Link to Song on Spotify"
           >
             <h3 id="songTitle">{song.name}</h3>
           </a>
@@ -44,7 +46,7 @@ function Song({ song }) {
             href={song.artists[0].external_urls.spotify}
             target="_blank"
             rel="noreferrer"
-            title="Link to Spotify"
+            title="Link to Spotify Artist"
           >
             <h4 id="artistName">{getArtistsString(song.artists)}</h4>
           </a>

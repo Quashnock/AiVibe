@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import GeminiResponse from "../../MockData/GeminiResponse";
-import { current } from "@reduxjs/toolkit";
 
 const vibeSlice = createSlice({
   name: "vibes",

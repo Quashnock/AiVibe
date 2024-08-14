@@ -10,7 +10,7 @@ function Search({ store, dispatch }) {
   function handleSubmit(event) {
     event.preventDefault();
     dispatch(getSongs(store.vibe.songNameList));
-    dispatch(setSearch(search));
+    dispatch(setSearchTerm(search));
     setSearch("");
     //TODO: tie to async thunk to process gemini API response
   }

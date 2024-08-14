@@ -42,6 +42,7 @@ export const addPlaylist = createAsyncThunk(
       }
     );
     const newPlaylistId = await playlistResponse.json();
+    return newPlaylistId;
   }
 );
 const songSlice = createSlice({
