@@ -6,8 +6,11 @@ function App({ store, dispatch }) {
   return (
     <>
       <div id="background">
-        <div id="shape1"></div>
-        <div id="shape2"></div>
+        <div id="shapeContainer">
+          <div id="shape1"></div>
+          <div id="shape2"></div>
+          <div id="shape3"></div>
+        </div>
       </div>
       <div className="App">
         <header>
@@ -21,7 +24,7 @@ function App({ store, dispatch }) {
               id="playlistTitle"
               aria-roledescription="Current Playlist Title"
             >
-              Suggestions
+              {store.vibe.playlistTitle || "Suggestions"}
             </h1>
           </div>
           <hr id="headerLineBreak" role="presentation"></hr>

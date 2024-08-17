@@ -19,7 +19,7 @@ function getArtistsString(artists) {
 
 function Song({ song }) {
   return (
-    <section id="songContainer">
+    <li id="songContainer">
       <div id="leftSection">
         <a
           href={song.album.external_urls.spotify}
@@ -63,7 +63,7 @@ function Song({ song }) {
           {SpotifyLogoSVG}
         </a>
       </div>
-    </section>
+    </li>
   );
 }
 

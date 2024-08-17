@@ -33,12 +33,12 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 2.8em;
-  gap: 0.1em;
+  height: 2.9em;
+  gap: 0.3em;
 }
 #songTitle {
-  font-family: "Syne", "Helvetica", sans-serif;
-  font-size: 1.3rem;
+  font-family: "Poppins", "Helvetica", sans-serif;
+  font-size: 1.1rem;
   font-weight: normal;
   line-height: 100%;
   color: hsl(0, 0%, 90%);

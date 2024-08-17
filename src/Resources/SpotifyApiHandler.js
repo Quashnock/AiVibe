@@ -1,4 +1,3 @@
-const clientId = "08f45a34c4d34abc87bd67da22a74824";
 const redirectUrl = "http://localhost:3000";
 const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
@@ -28,7 +27,7 @@ export const currentToken = {
 
     const now = new Date();
     const expiry = new Date(now.getTime() + expires_in * 1000);
-    localStorage.setItem("expires", expiry);
+    localStorage.setItem("expires", expiry.getTime());
   },
 };
 

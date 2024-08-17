@@ -21,13 +21,13 @@ form#vibeSearchForm {
   width: 100%;
   background-color: transparent;
   border: none !important;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 100%;
   padding-left: 0.8em;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: "Syne", "Helvetica", sans-serif;
+  font-family: "Poppins", "Helvetica", sans-serif;
 }
 
 #searchTextBox:focus {
@@ -53,5 +53,10 @@ form#vibeSearchForm {
 @media only screen and (orientation: landscape) {
   #submitButton {
     flex-basis: 5%;
+  }
+
+  #searchContainer {
+    width: 92%;
+    align-self: center;
   }
 }

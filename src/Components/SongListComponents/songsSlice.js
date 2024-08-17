@@ -1,10 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { currentToken } from "../../Resources/SpotifyApiHandler";
+import { currentToken, userData } from "../../Resources/SpotifyApiHandler";
 
 export const getSongs = createAsyncThunk("songs/getSongs", async (songs) => {
-  console.log(currentToken.access_token);
   if (!currentToken.access_token) {
-    console.log("hello");
     return;
   }
   return Promise.all(
@@ -26,9 +24,9 @@ export const getSongs = createAsyncThunk("songs/getSongs", async (songs) => {
 
 export const addPlaylist = createAsyncThunk(
   "songs/createPlaylist",
-  async (playlistName) => {
+  async (playlistName, thunkAPI) => {
     const playlistResponse = await fetch(
-      `https://api.spotify.com/v1/users/${playlistName}/playlists`,
+      `https://api.spotify.com/v1/users/${userData.id}/playlists`,
       {
         method: "POST",
         headers: {
@@ -37,12 +35,31 @@ export const addPlaylist = createAsyncThunk(
         },
         body: JSON.stringify({
           name: playlistName,
+          description: thunkAPI.getState().vibe.searchTerm,
           public: false,
         }),
       }
     );
-    const newPlaylistId = await playlistResponse.json();
-    return newPlaylistId;
+    const newPlaylist = await playlistResponse.json();
+    const songUris = thunkAPI
+      .getState()
+      .songs.songResponseList.map((song) => song.tracks.items[0].uri);
+    await fetch(
+      `https://api.spotify.com/v1/playlists/${newPlaylist.id}/tracks`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + currentToken.access_token,
+        },
+        body: JSON.stringify({
+          position: 0,
+          uris: songUris,
+        }),
+      }
+    );
+    console.log(newPlaylist.external_urls.spotify);
+    return newPlaylist.external_urls.spotify;
   }
 );
 const songSlice = createSlice({
@@ -51,6 +68,7 @@ const songSlice = createSlice({
     songResponseList: [],
     loadingSongs: false,
     failedToLoadSongs: false,
+    failedToCreatePlaylist: false,
   },
   extraReducers: (builder) => {
     builder
@@ -66,6 +84,20 @@ const songSlice = createSlice({
       .addCase(getSongs.rejected, (state) => {
         state.loadingSongs = false;
         state.failedToLoadSongs = true;
+      })
+      .addCase(addPlaylist.pending, (state) => {
+        state.loadingSongs = true;
+        state.failedToCreatePlaylist = false;
+      })
+      .addCase(addPlaylist.fulfilled, (state, action) => {
+        state.loadingSongs = false;
+        state.failedToCreatePlaylist = false;
+        console.log(action.payload);
+        window.open(action.payload, "_blank").focus();
+      })
+      .addCase(addPlaylist.rejected, (state) => {
+        state.loadingSongs = false;
+        state.failedToCreatePlaylist = true;
       });
   },
 });
