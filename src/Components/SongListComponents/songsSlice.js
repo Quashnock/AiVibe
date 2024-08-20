@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { currentToken, userData } from "../../Resources/SpotifyApiHandler";
 
 export const getSongs = createAsyncThunk("songs/getSongs", async (songs) => {
-  if (!currentToken.access_token) {
+  if (!localStorage.getItem("access_token")) {
     return;
   }
   return Promise.all(
@@ -13,7 +12,7 @@ export const getSongs = createAsyncThunk("songs/getSongs", async (songs) => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + currentToken.access_token,
+            Authorization: "Bearer " + localStorage.getItem("access_token"),
           },
         }
       );
@@ -26,12 +25,14 @@ export const addPlaylist = createAsyncThunk(
   "songs/createPlaylist",
   async (playlistName, thunkAPI) => {
     const playlistResponse = await fetch(
-      `https://api.spotify.com/v1/users/${userData.id}/playlists`,
+      `https://api.spotify.com/v1/users/${localStorage.getItem(
+        "id"
+      )}/playlists`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + currentToken.access_token,
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
         body: JSON.stringify({
           name: playlistName,
@@ -50,7 +51,7 @@ export const addPlaylist = createAsyncThunk(
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + currentToken.access_token,
+          Authorization: "Bearer " + localStorage.getItem("access_token"),
         },
         body: JSON.stringify({
           position: 0,
@@ -58,7 +59,6 @@ export const addPlaylist = createAsyncThunk(
         }),
       }
     );
-    console.log(newPlaylist.external_urls.spotify);
     return newPlaylist.external_urls.spotify;
   }
 );
@@ -92,7 +92,6 @@ const songSlice = createSlice({
       .addCase(addPlaylist.fulfilled, (state, action) => {
         state.loadingSongs = false;
         state.failedToCreatePlaylist = false;
-        console.log(action.payload);
         window.open(action.payload, "_blank").focus();
       })
       .addCase(addPlaylist.rejected, (state) => {

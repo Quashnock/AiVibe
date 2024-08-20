@@ -40,8 +40,8 @@
 }
 
 #vibeSuggestionContainer {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template: 1fr / repeat(2, 1fr);
   list-style-type: none;
   gap: 1em;
   margin-top: 1.5em;
@@ -52,17 +52,15 @@
   border: solid hsla(0, 0%, 50%, 15%) 1px;
   border-radius: 1em;
   padding: 0 0.75rem 0 0.75rem;
-  flex-basis: 25%;
-  flex-grow: 1;
   aspect-ratio: 6 / 7;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.1s;
+  transition: transform 0.1s ease-out;
   flex-wrap: wrap;
-  flex-basis: 50%;
+  width: 40vw;
 }
 
 .vibeSuggestion:hover {
@@ -76,6 +74,7 @@
 
 .suggestionText {
   font-size: 1rem;
+  text-wrap: pretty;
 }
 
 @media only screen and (orientation: landscape) {
@@ -97,8 +96,9 @@
   }
 
   #vibeSuggestionContainer {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    flex-basis: 25%;
+    grid-template: 1fr / repeat(4, 1fr);
+  }
+  .vibeSuggestion {
+    width: 10rem;
   }
 }

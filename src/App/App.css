@@ -4,7 +4,7 @@
   padding: 7%;
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(3em);
+  backdrop-filter: blur(14em);
 }
 header {
   flex-basis: 10vh;
@@ -23,6 +23,8 @@ header {
   font-size: 2.5rem;
   padding-bottom: 0.3em;
   letter-spacing: 0.025em;
+  font-weight: 900;
+  color: hsl(0, 0%, 95%);
 }
 hr#headerLineBreak {
   width: 100%;
@@ -56,19 +58,19 @@ hr#headerLineBreak {
 
 #shape1 {
   position: absolute;
-  width: 10em;
-  margin: auto 0;
+  width: 90vw;
   aspect-ratio: 1 / 1;
-  top: 0;
   border-radius: 50%;
+  left: -45vw;
+  top: 5vh;
   background-color: hsl(245, 73%, 30%);
 }
 #shape2 {
   position: absolute;
   aspect-ratio: 1 / 1;
-  width: 10em;
-  margin: auto 0;
-  top: -40vw;
+  width: 90vw;
+  top: 70vh;
+  left: 5vw;
   border-radius: 50%;
   background-color: hsla(281, 73%, 30%);
 }
@@ -76,8 +78,9 @@ hr#headerLineBreak {
 #shape3 {
   position: absolute;
   aspect-ratio: 1 / 1;
-  margin: auto 0;
   left: 60vw;
+  width: 90vw;
+  top: 5vh;
   border-radius: 50%;
   background-color: rgb(132, 21, 106);
 }
@@ -85,15 +88,5 @@ hr#headerLineBreak {
 @media only screen and (orientation: landscape) {
   .App {
     padding: 2% 3%;
-    backdrop-filter: blur(15em);
-  }
-  #shape1 {
-    width: 45em;
-  }
-  #shape2 {
-    width: 45em;
-  }
-  #shape3 {
-    width: 45em;
   }
 }

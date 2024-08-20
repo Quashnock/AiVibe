@@ -7,16 +7,6 @@ function msToTimeCode(ms) {
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
 
-function getArtistsString(artists) {
-  let artistsString = artists[0].name;
-  if (artistsString.length > 1) {
-    artistsString += artists
-      .slice(1)
-      .reduce((acc, el) => `${acc}, ${el.name}`, "");
-  }
-  return artistsString;
-}
-
 function Song({ song }) {
   return (
     <li id="songContainer">
@@ -42,14 +32,20 @@ function Song({ song }) {
           >
             <h3 id="songTitle">{song.name}</h3>
           </a>
-          <a
-            href={song.artists[0].external_urls.spotify}
-            target="_blank"
-            rel="noreferrer"
-            title="Link to Spotify Artist"
-          >
-            <h4 id="artistName">{getArtistsString(song.artists)}</h4>
-          </a>
+          <div className="artistName">
+            {song.artists.slice(0, 3).map((artist) => (
+              <a
+                href={artist.external_urls.spotify}
+                target="_blank"
+                rel="noreferrer"
+                className="artistLink"
+                title="Link to Artist on Spotify"
+                key={artist.id}
+              >
+                <p>{artist.name}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
       <div id="rightSection">

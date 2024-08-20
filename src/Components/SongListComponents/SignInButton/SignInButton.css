@@ -9,6 +9,8 @@
   border: none;
   border-radius: 2em;
   cursor: pointer;
+  margin: auto 0;
+  transition: padding, font-size 0.1s ease-in;
 }
 
 button svg {
@@ -21,4 +23,26 @@ button h3 {
   color: hsl(0, 0%, 12%);
   font-family: "Syne", "Helvetica", sans-serif;
   font-weight: 600;
+}
+
+#signInButton:hover {
+  padding: 0.7em 1.6em;
+  font-size: 0.88rem;
+  animation: glowpulse 4s infinite;
+}
+
+#signInButton:active {
+  padding: 0.4em 1em;
+  font-size: 0.75rem;
+}
+@keyframes glowpulse {
+  0% {
+    box-shadow: 0 0 4px hsl(137, 40%, 45%);
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(137, 40%, 45%);
+  }
+  100% {
+    box-shadow: 0 0 4px hsl(137, 40%, 45%);
+  }
 }

@@ -20,7 +20,7 @@ form#vibeSearchForm {
   flex-grow: 1;
   width: 100%;
   background-color: transparent;
-  border: none !important;
+  border: none;
   font-size: 1.1rem;
   line-height: 100%;
   padding-left: 0.8em;
@@ -30,9 +30,26 @@ form#vibeSearchForm {
   font-family: "Poppins", "Helvetica", sans-serif;
 }
 
+form#vibeSearchForm:has(#searchTextBox:focus) {
+  animation: glowpulse 4s infinite;
+}
+
+@keyframes glowpulse {
+  0% {
+    box-shadow: 0 0 4px hsl(315, 73%, 50%);
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(315, 73%, 50%);
+  }
+  100% {
+    box-shadow: 0 0 4px hsl(315, 73%, 50%);
+  }
+}
+
 #searchTextBox:focus {
   outline: none;
 }
+
 #submitButton {
   flex-basis: 15%;
   background-color: transparent;
