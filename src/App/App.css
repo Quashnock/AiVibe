@@ -1,34 +1,10 @@
 .App {
   height: 100%;
   width: 100%;
-  padding: 7%;
+  padding-top: 1%;
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(14em);
-}
-header {
-  flex-basis: 10vh;
-  flex-grow: 0;
-}
-#logoContainer {
-  display: flex;
-  justify-content: end;
-}
-#logo {
-  font-weight: 100;
-}
-
-#playlistTitle {
-  font-family: "Poppins", "Helvetica", sans-serif;
-  font-size: 2.5rem;
-  padding-bottom: 0.3em;
-  letter-spacing: 0.025em;
-  font-weight: 900;
-  color: hsl(0, 0%, 95%);
-}
-hr#headerLineBreak {
-  width: 100%;
-  border: solid hsla(0, 0%, 100%, 30%) 1px;
 }
 
 #background {
@@ -83,10 +59,4 @@ hr#headerLineBreak {
   top: 5vh;
   border-radius: 50%;
   background-color: rgb(132, 21, 106);
-}
-
-@media only screen and (orientation: landscape) {
-  .App {
-    padding: 2% 3%;
-  }
 }

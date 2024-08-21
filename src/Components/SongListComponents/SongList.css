@@ -15,11 +15,28 @@
   flex-direction: column;
   align-items: center;
   gap: 1.25em;
-  padding: 0.75em 0;
+  padding: 1.25em 2em;
 }
+
+#loadingContainer {
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 5em;
+}
+
 #loadingTitle {
-  margin-top: 1em;
+  font-family: "Jura";
+  font-weight: 100;
+  font-size: 1.5rem;
+  color: hsl(0, 0%, 90%);
 }
+
+#loadingTitle::after {
+  content: "...";
+}
+
 #loadingWheel {
   margin-top: 2em;
   width: 4em;
@@ -51,7 +68,7 @@
   background-color: hsla(0, 0%, 10%, 50%);
   border: solid hsla(0, 0%, 50%, 15%) 1px;
   border-radius: 1em;
-  padding: 0 0.75rem 0 0.75rem;
+  padding: 0 0.75rem;
   aspect-ratio: 6 / 7;
   display: flex;
   align-items: center;
@@ -61,6 +78,18 @@
   transition: transform 0.1s ease-out;
   flex-wrap: wrap;
   width: 40vw;
+  animation: fadeIn 0.7s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1em);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateY(0);
+  }
 }
 
 .vibeSuggestion:hover {
@@ -93,6 +122,7 @@
 
   #songList {
     width: 80%;
+    padding: 1.25em 0em;
   }
 
   #vibeSuggestionContainer {

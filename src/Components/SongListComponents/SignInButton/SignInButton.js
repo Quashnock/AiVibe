@@ -8,6 +8,7 @@ async function handleLoginClick() {
     url: "http://localhost:5000/spotify/login",
   };
   const [verifier, href] = (await axios.request(params)).data;
+  alert(verifier);
   window.localStorage.setItem("code_verifier", verifier);
   window.location.href = href;
 }

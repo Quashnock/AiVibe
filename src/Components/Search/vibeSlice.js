@@ -59,6 +59,9 @@ const vibeSlice = createSlice({
       .addCase(getGeminiResponse.fulfilled, (state, action) => {
         state.failedToLoadGeminiResponse = false;
         state.loadingGeminiResponse = false;
+        if (state.searchTerm) {
+          state.playlistTitle = action.payload[1];
+        }
         state.songNameList = action.payload[0]
           .split(" / ")
           .map((song) => song.split("-"));

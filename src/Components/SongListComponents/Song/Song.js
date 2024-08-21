@@ -6,10 +6,14 @@ function msToTimeCode(ms) {
   let seconds = Math.floor((ms % 60000) / 1000);
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
-
-function Song({ song }) {
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+function Song({ song, idx }) {
+  const timeOut = idx / 8 + "s";
+  console.log(timeOut);
   return (
-    <li id="songContainer">
+    <li id="songContainer" style={{ animationDelay: timeOut }}>
       <div id="leftSection">
         <a
           href={song.album.external_urls.spotify}

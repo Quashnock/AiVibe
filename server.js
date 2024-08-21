@@ -72,7 +72,7 @@ app.get("/spotify/token", async (req, res) => {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: new URLSearchParams({
-      client_id: clientId,
+      client_id: process.env.REACT_APP_SPOTIFY_API_KEY,
       grant_type: "authorization_code",
       code: code,
       redirect_uri: redirectUrl,

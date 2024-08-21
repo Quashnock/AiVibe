@@ -2,7 +2,7 @@ import "./App.css";
 import SongList from "../Components/SongListComponents/SongList";
 import Search from "../Components/Search/Search";
 import axios from "axios";
-
+import Header from "../Components/Header/Header";
 export const redirectUrl = "http://localhost:3000";
 export const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 export const tokenEndpoint = "https://accounts.spotify.com/api/token";
@@ -42,7 +42,7 @@ if (code) {
     const { expires_in, access_token } = await getToken(code);
     localStorage.setItem(
       "expires",
-      new Date(new Date().getTime() * expires_in * 1000).getTime()
+      new Date(new Date().getTime() + expires_in * 1000).getTime()
     );
     localStorage.setItem("access_token", access_token);
     // Remove code from URL so we can refresh correctly.
@@ -79,26 +79,7 @@ function App({ store, dispatch }) {
         </div>
       </div>
       <div className="App">
-        <header>
-          <div id="logoContainer" role="presentation">
-            <h2 id="logo" aria-roledescription="title logo">
-              AiVibe
-            </h2>
-          </div>
-          <div id="playlistTitleContainer" role="presentation">
-            <h1
-              id="playlistTitle"
-              aria-roledescription="Current Playlist Title"
-            >
-              {store.vibe.playlistTitle &&
-              !store.songs.songList &&
-              !store.vibe.searchTerm
-                ? store.vibe.playlistTitle
-                : "Suggestions"}
-            </h1>
-          </div>
-          <hr id="headerLineBreak" role="presentation"></hr>
-        </header>
+        <Header store={store} dispatch={dispatch} />
         <SongList store={store} dispatch={dispatch} />
         <Search store={store} dispatch={dispatch} />
       </div>

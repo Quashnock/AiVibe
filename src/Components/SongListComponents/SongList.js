@@ -16,16 +16,16 @@ function SongList({ store, dispatch }) {
   }, [store.vibe.songNameList, dispatch]);
 
   useEffect(() => {
-    dispatch(getGeminiSuggestions());
+    return () => dispatch(getGeminiSuggestions());
   }, [dispatch]);
 
   function renderList(songList) {
     if (store.songs.loadingSongs || store.vibe.loadingGeminiResponse) {
       return (
-        <>
-          <h1 id="loadingTitle">Loading Playlist...</h1>
+        <div id="loadingContainer">
+          <h1 id="loadingTitle">Loading Playlist</h1>
           <div id="loadingWheel"></div>
-        </>
+        </div>
       );
     } else if (
       store.songs.failedToLoadSongs ||
@@ -40,9 +40,13 @@ function SongList({ store, dispatch }) {
     return (
       <>
         <ul id="songList">
-          {songList.map((song) => {
+          {songList.map((song, idx) => {
             return (
-              <Song song={song.tracks.items[0]} key={song.tracks.items[0].id} />
+              <Song
+                song={song.tracks.items[0]}
+                key={song.tracks.items[0].id}
+                idx={idx}
+              />
             );
           })}
         </ul>

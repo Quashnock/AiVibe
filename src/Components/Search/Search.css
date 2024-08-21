@@ -1,18 +1,21 @@
 #searchContainer {
-  flex-basis: 10vh;
-  flex-grow: 0;
+  flex-basis: 1vh;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 0.5em;
+  background-color: hsl(0, 0%, 8%);
+  box-shadow: 0 0 7px hsl(0, 0%, 6%);
+  padding: 4% 5% 6% 5%;
 }
 
 form#vibeSearchForm {
   width: 100%;
   display: flex;
-  padding: 0.5em 1em;
-  background-color: hsl(0, 0%, 8%);
+  padding: 0.3em 1em;
+  background-color: hsl(0, 0%, 14%);
   border-radius: 2em;
+  box-shadow: 0 0 7px hsl(0, 0%, 6%);
 }
 
 #searchTextBox {
@@ -36,13 +39,13 @@ form#vibeSearchForm:has(#searchTextBox:focus) {
 
 @keyframes glowpulse {
   0% {
-    box-shadow: 0 0 4px hsl(315, 73%, 50%);
+    box-shadow: 0 0 7px hsl(315, 73%, 50%);
   }
   50% {
-    box-shadow: 0 0 10px hsl(315, 73%, 50%);
+    box-shadow: 0 0 15px hsl(315, 73%, 50%);
   }
   100% {
-    box-shadow: 0 0 4px hsl(315, 73%, 50%);
+    box-shadow: 0 0 7px hsl(315, 73%, 50%);
   }
 }
 
@@ -59,8 +62,9 @@ form#vibeSearchForm:has(#searchTextBox:focus) {
   padding: 0 auto;
   cursor: pointer;
 }
+
 #submitButton:hover {
-  background-color: hsla(0, 0%, 50%, 10%);
+  background-color: hsla(0, 0%, 50%, 20%);
 }
 
 #submitButton svg {
@@ -73,7 +77,6 @@ form#vibeSearchForm:has(#searchTextBox:focus) {
   }
 
   #searchContainer {
-    width: 92%;
-    align-self: center;
+    padding: 1.5% 5% 1.5% 5%;
   }
 }

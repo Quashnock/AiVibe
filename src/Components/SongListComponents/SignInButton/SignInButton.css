@@ -11,6 +11,7 @@
   cursor: pointer;
   margin: auto 0;
   transition: padding, font-size 0.1s ease-in;
+  box-shadow: 0 1px 6px rgb(56, 56, 56);
 }
 
 button svg {
@@ -28,14 +29,14 @@ button h3 {
 #signInButton:hover {
   padding: 0.7em 1.6em;
   font-size: 0.88rem;
-  animation: glowpulse 4s infinite;
+  animation: glowpulseGreen 4s infinite;
 }
 
 #signInButton:active {
   padding: 0.4em 1em;
   font-size: 0.75rem;
 }
-@keyframes glowpulse {
+@keyframes glowpulseGreen {
   0% {
     box-shadow: 0 0 4px hsl(137, 40%, 45%);
   }

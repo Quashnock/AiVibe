@@ -1,0 +1,50 @@
+header {
+  flex-basis: 10vh;
+  flex-grow: 0;
+  padding: 5% 7% 0 7%;
+}
+#logoContainer {
+  display: flex;
+  justify-content: end;
+}
+#logo {
+  font-weight: 100;
+}
+
+#playlistTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5em 0;
+}
+
+#playlistTitle {
+  font-family: "Poppins", "Helvetica", sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.0000012em;
+  color: hsl(0, 0%, 95%);
+  animation: fadeInRight ease-out 0.5s;
+  line-height: 100%;
+  margin-top: 0.3em;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-1em);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0);
+  }
+}
+hr#headerLineBreak {
+  width: 100%;
+  border: solid hsla(0, 0%, 100%, 30%) 1px;
+}
+
+@media only screen and (orientation: landscape) {
+  header {
+    padding: 0 8% 0 8%;
+  }
+}

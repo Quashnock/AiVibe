@@ -9,7 +9,7 @@ function AddPlaylistButton({ store, dispatch }) {
   }
   return (
     <button id="addPlaylistButton" onClick={handleClick}>
-      <h3>Save Playlist</h3>
+      <h3>+</h3>
     </button>
   );
 }
