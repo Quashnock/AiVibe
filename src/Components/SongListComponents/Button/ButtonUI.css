@@ -1,0 +1,93 @@
+.buttonUI {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.5em;
+  padding: 1.15em 3em;
+  margin: 2em 0;
+  background-color: hsl(315, 73%, 50%);
+  border: none;
+  border-radius: 2em;
+  cursor: pointer;
+  transition: padding, font-size 0.1s ease-in;
+  box-shadow: 0 1px 10px rgb(56, 56, 56);
+}
+.buttonUI:has(svg) {
+  justify-self: center;
+  padding: 0.5em 1.5em;
+  gap: 0.75em;
+  background-color: hsl(137, 40%, 45%);
+  border: none;
+  border-radius: 2em;
+  cursor: pointer;
+  margin: 8em;
+  transition: padding, font-size 0.1s ease-in;
+  box-shadow: 0 1px 6px rgb(56, 56, 56);
+  text-wrap: nowrap;
+}
+.buttonUI:hover {
+  padding: 1.15em 3em;
+  font-size: 0.88rem;
+  animation: glowpulse 4s infinite;
+}
+
+.buttonUI:active {
+  padding: 1.15em 3em;
+  font-size: 0.7rem;
+}
+@keyframes glowpulse {
+  0% {
+    box-shadow: 0 0 4px hsl(315, 73%, 50%);
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(315, 73%, 50%);
+  }
+  100% {
+    box-shadow: 0 0 4px hsl(315, 73%, 50%);
+  }
+}
+
+.buttonUI h3 {
+  color: white;
+  font-family: "Poppins", "Helvetica", sans-serif;
+  font-weight: 400;
+}
+
+.buttonUI:has(svg) svg {
+  font-size: 2.5rem;
+  fill: hsl(0, 0%, 12%) !important;
+  height: 100%;
+}
+
+.buttonUI:has(svg) h3 {
+  color: hsl(0, 0%, 12%);
+  font-family: "Syne", "Helvetica", sans-serif;
+  font-weight: 600;
+}
+
+.buttonUI:has(svg):hover {
+  padding: 0.7em 1.6em;
+  font-size: 0.88rem;
+  animation: glowpulseGreen 4s infinite;
+}
+
+.buttonUI:hover svg {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.buttonUI:has(svg):active {
+  padding: 0.6em 1.4em;
+  font-size: 0.84rem;
+}
+@keyframes glowpulseGreen {
+  0% {
+    box-shadow: 0 0 4px hsl(137, 40%, 45%);
+  }
+  50% {
+    box-shadow: 0 0 10px hsl(137, 40%, 45%);
+  }
+  100% {
+    box-shadow: 0 0 4px hsl(137, 40%, 45%);
+  }
+}

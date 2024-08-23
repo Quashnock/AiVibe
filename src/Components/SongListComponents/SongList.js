@@ -1,14 +1,16 @@
-import AddPlaylistButton from "./AddPlaylistButton/AddPlaylistButton.js";
-import SignInButton from "./SignInButton/SignInButton.js";
+import ButtonUI from "./Button/ButtonUI.js";
+import { addPlaylist, getSongs } from "./songsSlice.js";
 import Song from "./Song/Song.js";
 import "./SongList.css";
-import { getSongs } from "./songsSlice.js";
 import { useEffect } from "react";
 import {
   getGeminiSuggestions,
   setSearchTerm,
   getGeminiResponse,
 } from "../Search/vibeSlice.js";
+import VibeSuggestion from "./VibeSuggestion/VibeSuggestion.js";
+import { nanoid } from "@reduxjs/toolkit";
+import axios from "axios";
 
 function SongList({ store, dispatch }) {
   useEffect(() => {
@@ -22,37 +24,81 @@ function SongList({ store, dispatch }) {
   function renderList(songList) {
     if (store.songs.loadingSongs || store.vibe.loadingGeminiResponse) {
       return (
-        <div id="loadingContainer">
-          <h1 id="loadingTitle">Loading Playlist</h1>
+        <div id="messageContainer">
+          <h1 id="messageTitle">Loading...</h1>
           <div id="loadingWheel"></div>
         </div>
       );
-    } else if (
-      store.songs.failedToLoadSongs ||
-      store.songs.failedToCreatePlaylist
-    ) {
+    } else if (songList.length && store.vibe.searchTerm) {
+      console.log(songList);
       return (
         <>
-          <h1 id="loadingTitle">Error Loading Playlist</h1>
+          <ul id="songList">
+            {songList.map((song, idx) => {
+              return (
+                <Song
+                  song={song.tracks.items[0]}
+                  key={song.tracks.items[0].id}
+                  idx={idx}
+                />
+              );
+            })}
+          </ul>
+          <ButtonUI
+            text={"Add to Playlist"}
+            clickHandler={() => {
+              if (store.vibe.searchTerm && store.vibe.songNameList) {
+                dispatch(addPlaylist(store.vibe.playlistTitle));
+              }
+            }}
+          />
         </>
       );
-    }
-    return (
-      <>
-        <ul id="songList">
-          {songList.map((song, idx) => {
-            return (
-              <Song
-                song={song.tracks.items[0]}
-                key={song.tracks.items[0].id}
-                idx={idx}
-              />
-            );
-          })}
+    } else if (!(store.vibe.searchTerm && store.songs.songResponseList)) {
+      return (
+        <ul id="vibeSuggestionContainer">
+          {store.vibe.vibeSuggestions.map((suggestion) => (
+            <VibeSuggestion
+              suggestion={suggestion}
+              key={nanoid()}
+              handleSuggestionClick={handleSuggestionClick}
+            />
+          ))}
         </ul>
-        <AddPlaylistButton store={store} dispatch={dispatch} />
-      </>
-    );
+      );
+    } else {
+      let errorMessage = "Unknown Error";
+      let handleClick = () => {
+        dispatch(getSongs(store.vibe.songNameList));
+      };
+      if (store.vibe.failedToLoadGeminiSuggestions) {
+        errorMessage = "Failed to load AI suggestions";
+        handleClick = () => {
+          dispatch(getGeminiSuggestions());
+        };
+      } else if (store.vibe.failedToLoadGeminiResponse) {
+        errorMessage = "Failed to load AI response";
+        handleClick = () => {
+          dispatch(getGeminiResponse(store.vibe.searchTerm));
+        };
+      } else if (store.songs.failedToLoadSongs) {
+        errorMessage = "Failed to load songs";
+        handleClick = () => {
+          dispatch(getSongs(store.vibe.songNameList));
+        };
+      } else if (store.songs.failedToCreatePlaylist) {
+        errorMessage = "Error creating playlist";
+        handleClick = () => {
+          dispatch(addPlaylist(store.vibe.songName));
+        };
+      }
+      return (
+        <div id="messageContainer">
+          <h1 id="messageTitle">{errorMessage}</h1>
+          <ButtonUI text={"Retry Load"} clickHandler={handleClick} />
+        </div>
+      );
+    }
   }
 
   function handleSuggestionClick(suggestion) {
@@ -64,25 +110,21 @@ function SongList({ store, dispatch }) {
   return (
     <main id="songListContainer" role="presentation">
       {Date.now() < window.localStorage.getItem("expires") ? (
-        store.vibe.searchTerm && store.songs.songResponseList ? (
-          renderList(store.songs.songResponseList)
-        ) : (
-          <ul id="vibeSuggestionContainer">
-            {store.vibe.vibeSuggestions.map((suggestion, idx) => (
-              <li
-                className="vibeSuggestion"
-                onClick={() => handleSuggestionClick(suggestion[1])}
-                title="Use Suggestion"
-                key={idx}
-              >
-                <h3 className="suggestionEmoji">{suggestion[0]}</h3>
-                <h4 className="suggestionText">{suggestion[1]}</h4>
-              </li>
-            ))}
-          </ul>
-        )
+        renderList(store.songs.songResponseList)
       ) : (
-        <SignInButton />
+        <ButtonUI
+          text={"Log in with Spotify"}
+          clickHandler={async () => {
+            let params = {
+              method: "GET",
+              url: "http://localhost:5000/spotify/login",
+            };
+            const [verifier, href] = (await axios.request(params)).data;
+            localStorage.setItem("code_verifier", verifier);
+            window.location.href = href;
+          }}
+          isSignIn={true}
+        />
       )}
     </main>
   );

@@ -3,6 +3,7 @@ import SongList from "../Components/SongListComponents/SongList";
 import Search from "../Components/Search/Search";
 import axios from "axios";
 import Header from "../Components/Header/Header";
+import { useEffect } from "react";
 export const redirectUrl = "http://localhost:3000";
 export const authorizationEndpoint = "https://accounts.spotify.com/authorize";
 export const tokenEndpoint = "https://accounts.spotify.com/api/token";
@@ -79,7 +80,7 @@ function App({ store, dispatch }) {
         </div>
       </div>
       <div className="App">
-        <Header store={store} dispatch={dispatch} />
+        <Header title={store.vibe.playlistTitle} />
         <SongList store={store} dispatch={dispatch} />
         <Search store={store} dispatch={dispatch} />
       </div>

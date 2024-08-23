@@ -1,0 +1,63 @@
+#vibeSuggestionContainer {
+  display: grid;
+  grid-template: 1fr / repeat(2, 1fr);
+  list-style-type: none;
+  gap: 1em;
+  margin-top: 1.5em;
+}
+
+.vibeSuggestion {
+  background-color: hsla(0, 0%, 10%, 50%);
+  border: solid hsla(0, 0%, 50%, 15%) 1px;
+  border-radius: 1em;
+  padding: 0 0.75rem;
+  aspect-ratio: 6 / 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.1s ease-out;
+  flex-wrap: wrap;
+  width: 40vw;
+  animation: fadeIn 0.3s ease-out;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-1em);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+}
+
+.vibeSuggestion:hover {
+  transform: scale(1.1);
+}
+
+.vibeSuggestion:active {
+  transform: scale(0.9);
+}
+
+.suggestionEmoji {
+  font-size: 3rem;
+  margin-bottom: 0.5em;
+}
+
+.suggestionText {
+  font-size: 1rem;
+  text-wrap: pretty;
+}
+
+@media only screen and (min-width: 768px) {
+  #vibeSuggestionContainer {
+    grid-template: 1fr / repeat(4, 1fr);
+  }
+  .vibeSuggestion {
+    width: 10rem;
+  }
+}

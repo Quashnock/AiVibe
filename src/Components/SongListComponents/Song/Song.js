@@ -6,27 +6,24 @@ function msToTimeCode(ms) {
   let seconds = Math.floor((ms % 60000) / 1000);
   return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
 function Song({ song, idx }) {
-  const timeOut = idx / 8 + "s";
-  console.log(timeOut);
+  const timeOut = String(idx / 10) + "s";
   return (
-    <li id="songContainer" style={{ animationDelay: timeOut }}>
+    <li id="songContainer" style={{ animationDelay: timeOut, color: "red" }}>
+      <a
+        href={song.album.external_urls.spotify}
+        target="_blank"
+        rel="noreferrer"
+        title="Link to Spotify Album"
+      >
+        <img
+          id="songThumbnail"
+          src={song.album.images[1].url}
+          alt="songThumbnail"
+        ></img>
+      </a>
       <div id="leftSection">
-        <a
-          href={song.album.external_urls.spotify}
-          target="_blank"
-          rel="noreferrer"
-          title="Link to Spotify Album"
-        >
-          <img
-            id="songThumbnail"
-            src={song.album.images[1].url}
-            alt="songThumbnail"
-          ></img>
-        </a>
         <div id="titles">
           <a
             href={song.external_urls.spotify}

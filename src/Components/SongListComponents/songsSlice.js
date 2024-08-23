@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getSongs = createAsyncThunk("songs/getSongs", async (songs) => {
-  if (!localStorage.getItem("access_token")) {
+  if (!(Date.now() < window.localStorage.getItem("expires"))) {
     return;
   }
+  const songSet = new Set();
   return Promise.all(
     songs.map(async (song) => {
       const response = await fetch(
@@ -16,7 +17,13 @@ export const getSongs = createAsyncThunk("songs/getSongs", async (songs) => {
           },
         }
       );
-      return await response.json();
+      const songResult = await response.json();
+      if (!songSet.has(songResult.tracks.items[0].id)) {
+        console.log(songSet);
+        songSet.add(songResult.tracks.items[0].id);
+        return songResult;
+      }
+      return;
     })
   );
 });
@@ -79,7 +86,9 @@ const songSlice = createSlice({
       .addCase(getSongs.fulfilled, (state, action) => {
         state.loadingSongs = false;
         state.failedToLoadSongs = false;
-        state.songResponseList = action.payload;
+        state.songResponseList = action.payload.filter(
+          (song) => song !== undefined
+        );
       })
       .addCase(getSongs.rejected, (state) => {
         state.loadingSongs = false;

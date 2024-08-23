@@ -1,12 +1,12 @@
 #songListContainer {
-  width: 100%;
+  margin: 0 10%;
   flex-basis: 80vh;
   flex-grow: 1;
-  overflow-y: scroll;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
 
 #songList {
@@ -15,10 +15,10 @@
   flex-direction: column;
   align-items: center;
   gap: 1.25em;
-  padding: 1.25em 2em;
+  padding: 1.25em 0;
 }
 
-#loadingContainer {
+#messageContainer {
   margin: auto 0;
   display: flex;
   flex-direction: column;
@@ -26,15 +26,11 @@
   padding-bottom: 5em;
 }
 
-#loadingTitle {
+#messageTitle {
   font-family: "Jura";
   font-weight: 100;
   font-size: 1.5rem;
   color: hsl(0, 0%, 90%);
-}
-
-#loadingTitle::after {
-  content: "...";
 }
 
 #loadingWheel {
@@ -56,57 +52,7 @@
   }
 }
 
-#vibeSuggestionContainer {
-  display: grid;
-  grid-template: 1fr / repeat(2, 1fr);
-  list-style-type: none;
-  gap: 1em;
-  margin-top: 1.5em;
-}
-
-.vibeSuggestion {
-  background-color: hsla(0, 0%, 10%, 50%);
-  border: solid hsla(0, 0%, 50%, 15%) 1px;
-  border-radius: 1em;
-  padding: 0 0.75rem;
-  aspect-ratio: 6 / 7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  cursor: pointer;
-  transition: transform 0.1s ease-out;
-  flex-wrap: wrap;
-  width: 40vw;
-  animation: fadeIn 0.7s ease-out;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-1em);
-  }
-  100% {
-    opacity: 100%;
-    transform: translateY(0);
-  }
-}
-
-.vibeSuggestion:hover {
-  transform: scale(1.1);
-}
-
-.suggestionEmoji {
-  font-size: 3rem;
-  margin-bottom: 0.5em;
-}
-
-.suggestionText {
-  font-size: 1rem;
-  text-wrap: pretty;
-}
-
-@media only screen and (orientation: landscape) {
+@media only screen and (min-width: 768px) {
   ::-webkit-scrollbar {
     width: 3px;
   }
@@ -121,14 +67,7 @@
   }
 
   #songList {
-    width: 80%;
-    padding: 1.25em 0em;
-  }
-
-  #vibeSuggestionContainer {
-    grid-template: 1fr / repeat(4, 1fr);
-  }
-  .vibeSuggestion {
-    width: 10rem;
+    width: 100%;
+    padding: 1.5em 1em;
   }
 }

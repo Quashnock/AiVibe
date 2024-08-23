@@ -15,20 +15,36 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.5em 0;
+  margin-bottom: 1em;
 }
 
 #playlistTitle {
   font-family: "Poppins", "Helvetica", sans-serif;
   font-size: 2.5rem;
-  letter-spacing: 0.0000012em;
   color: hsl(0, 0%, 95%);
+  font-weight: 900;
+}
+
+.animate {
   animation: fadeInRight ease-out 0.5s;
-  line-height: 100%;
-  margin-top: 0.3em;
+}
+
+.animate2 {
+  animation: fadeInRight2 ease-out 0.5s;
 }
 
 @keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-1em);
+  }
+  100% {
+    opacity: 100%;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight2 {
   0% {
     opacity: 0;
     transform: translateX(-1em);
@@ -43,7 +59,7 @@ hr#headerLineBreak {
   border: solid hsla(0, 0%, 100%, 30%) 1px;
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (min-width: 640px) {
   header {
     padding: 0 8% 0 8%;
   }

@@ -25,6 +25,7 @@ form#vibeSearchForm {
   background-color: transparent;
   border: none;
   font-size: 1.1rem;
+  font-weight: 500;
   line-height: 100%;
   padding-left: 0.8em;
   display: flex;
@@ -71,7 +72,7 @@ form#vibeSearchForm:has(#searchTextBox:focus) {
   font-size: 1.6rem;
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (min-width: 640px) {
   #submitButton {
     flex-basis: 5%;
   }

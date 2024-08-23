@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./Header.css";
-import AddPlaylistButton from "../SongListComponents/AddPlaylistButton/AddPlaylistButton";
-function Header({ store, dispatch }) {
-  const [title, setTitle] = useState("Suggestions");
+function Header({ title }) {
   useEffect(() => {
-    setTitle(store.vibe.playlistTitle || "Suggestions");
-  }, [store.vibe.playlistTitle, store.songs.songList]);
+    const playlistTitle = document.getElementById("playlistTitle").classList;
+    playlistTitle.toggle("animate");
+    playlistTitle.toggle("animate2");
+  }, [title]);
   return (
     <header>
       <div id="logoContainer" role="presentation">
@@ -14,10 +14,13 @@ function Header({ store, dispatch }) {
         </h2>
       </div>
       <div id="playlistTitleContainer" role="presentation">
-        <h1 id="playlistTitle" aria-roledescription="Current Playlist Title">
+        <h1
+          id="playlistTitle"
+          className="animate"
+          aria-roledescription="Current Playlist Title"
+        >
           {title}
         </h1>
-        <AddPlaylistButton store={store} dispatch={dispatch} />
       </div>
       <hr id="headerLineBreak" role="presentation"></hr>
     </header>
