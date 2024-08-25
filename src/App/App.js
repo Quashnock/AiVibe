@@ -54,7 +54,7 @@ if (code) {
       localStorage.setItem("id", (await getUserData()).id);
     } catch (error) {
       console.log(error);
-      window.location.href = "http://localhost:3000";
+      window.location.href = "https://aivibe.netlify.app/";
       localStorage.clear();
       alert(
         "Sorry!\nYou are not listet by the developer to use this app.\nThe app uses the development mode and has not an OCTA-extension,\nwhich is required by Spotify to make the App fully public."
