@@ -3,12 +3,6 @@ import SongList from "../Components/SongListComponents/SongList";
 import Search from "../Components/Search/Search";
 import axios from "axios";
 import Header from "../Components/Header/Header";
-import { useEffect } from "react";
-export const redirectUrl = "http://localhost:3000";
-export const authorizationEndpoint = "https://accounts.spotify.com/authorize";
-export const tokenEndpoint = "https://accounts.spotify.com/api/token";
-export const scope =
-  "user-read-private user-read-email playlist-read-private playlist-modify-private playlist-modify-public";
 
 // On page load, try to fetch auth code from current browser search URL
 const args = new URLSearchParams(window.location.search);
@@ -60,7 +54,7 @@ if (code) {
       localStorage.setItem("id", (await getUserData()).id);
     } catch (error) {
       console.log(error);
-      window.location.href = redirectUrl;
+      window.location.href = "http://localhost:3000";
       localStorage.clear();
       alert(
         "Sorry!\nYou are not listet by the developer to use this app.\nThe app uses the development mode and has not an OCTA-extension,\nwhich is required by Spotify to make the App fully public."

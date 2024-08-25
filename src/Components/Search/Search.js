@@ -25,12 +25,14 @@ function Search({ store, dispatch }) {
           type="text"
           placeholder="Enter a vibe for your playlist"
           value={search}
+          aria-roledescription="Search Text Box"
           onChange={({ target }) => setSearch(target.value)}
         ></input>
         <button
           type="submit"
           id="submitButton"
-          aria-roledescription="Submit Button"
+          name="Submit Search Button"
+          aria-roledescription="Submit Search Button"
         >
           {UpArrowSVG}
         </button>

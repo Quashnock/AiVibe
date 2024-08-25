@@ -9,7 +9,7 @@ function Header({ title }) {
   return (
     <header>
       <div id="logoContainer" role="presentation">
-        <h2 id="logo" aria-roledescription="title logo">
+        <h2 id="logo" aria-roledescription="Title Logo">
           AiVibe
         </h2>
       </div>
@@ -19,7 +19,7 @@ function Header({ title }) {
           className="animate"
           aria-roledescription="Current Playlist Title"
         >
-          {title}
+          {title || "Suggestions"}
         </h1>
       </div>
       <hr id="headerLineBreak" role="presentation"></hr>
