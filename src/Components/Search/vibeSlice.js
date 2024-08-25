@@ -33,7 +33,7 @@ export const getGeminiSuggestions = createAsyncThunk(
 const vibeSlice = createSlice({
   name: "vibe",
   initialState: {
-    response: GeminiResponse,
+    response: null,
     songNameList: [],
     searchTerm: "",
     playlistTitle: "Suggestions",
