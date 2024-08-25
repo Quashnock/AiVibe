@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import GeminiResponse from "../../MockData/GeminiResponse";
 import axios from "axios";
 
 async function callGeminiAPI(prompt) {
