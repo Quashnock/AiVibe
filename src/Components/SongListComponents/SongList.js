@@ -34,7 +34,6 @@ function SongList({ store, dispatch }) {
       store.vibe.searchTerm &&
       !store.vibe.failedToLoadGeminiResponse
     ) {
-      console.log(store.vibe.failedToLoadGeminiResponse);
       return (
         <>
           <ul id="songList">

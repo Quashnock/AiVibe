@@ -16,10 +16,7 @@ const tokenEndpoint = "https://accounts.spotify.com/api/token";
 const scope =
   "user-read-private user-read-email playlist-read-private playlist-modify-private playlist-modify-public";
 
-// listening for port 5000
 app.listen(5000, () => console.log(`Server is running on ${port}`));
-
-// API request
 app.get("/gemini", async (req, res) => {
   try {
     const prompt = req.query.prompt;

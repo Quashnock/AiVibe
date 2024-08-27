@@ -19,7 +19,6 @@ export const getSongs = createAsyncThunk("songs/getSongs", async (songs) => {
       );
       const songResult = await response.json();
       if (!songSet.has(songResult.tracks.items[0].id)) {
-        console.log(songSet);
         songSet.add(songResult.tracks.items[0].id);
         return songResult;
       }

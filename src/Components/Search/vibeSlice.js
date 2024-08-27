@@ -10,6 +10,7 @@ async function callGeminiAPI(prompt) {
         prompt: prompt,
       },
     };
+    console.log("Hello");
     return (await axios.request(params)).data;
   } catch (err) {
     return new Error("Failed to load Gemini response");
