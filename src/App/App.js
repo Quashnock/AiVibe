@@ -4,7 +4,6 @@ import Search from "../Components/Search/Search";
 import axios from "axios";
 import Header from "../Components/Header/Header";
 
-// On page load, try to fetch auth code from current browser search URL
 const args = new URLSearchParams(window.location.search);
 const code = args.get("code");
 
@@ -31,7 +30,6 @@ async function getUserData() {
   return (await axios.request(params)).data;
 }
 
-// If we find a code, we're in a callback, do a token exchange
 if (code) {
   try {
     const { expires_in, access_token } = await getToken(code);
@@ -40,7 +38,6 @@ if (code) {
       new Date(new Date().getTime() + expires_in * 1000).getTime()
     );
     localStorage.setItem("access_token", access_token);
-    // Remove code from URL so we can refresh correctly.
     const url = new URL(window.location.href);
     url.searchParams.delete("code");
     const updatedUrl = url.search ? url.href : url.href.replace("?", "");
@@ -48,7 +45,7 @@ if (code) {
   } catch (error) {
     console.log(error);
   }
-  // If we have a token, we're logged in, so fetch user data and save to localStorage
+
   if (localStorage.getItem("access_token") !== null) {
     try {
       localStorage.setItem("id", (await getUserData()).id);
@@ -57,7 +54,7 @@ if (code) {
       window.location.href = "https://aivibe.netlify.app/";
       localStorage.clear();
       alert(
-        "Sorry!\nYou are not listet by the developer to use this app.\nThe app uses the development mode and has not an OCTA-extension,\nwhich is required by Spotify to make the App fully public."
+        "Sorry!\nYou are not listed by the developer to use this app.\nThe app uses the development mode and has not an OCTA-extension,\nwhich is required by Spotify to make the App fully public."
       );
     }
   }

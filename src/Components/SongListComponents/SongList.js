@@ -29,8 +29,12 @@ function SongList({ store, dispatch }) {
           <div id="loadingWheel"></div>
         </div>
       );
-    } else if (songList.length && store.vibe.searchTerm) {
-      console.log(songList);
+    } else if (
+      songList.length &&
+      store.vibe.searchTerm &&
+      !store.vibe.failedToLoadGeminiResponse
+    ) {
+      console.log(store.vibe.failedToLoadGeminiResponse);
       return (
         <>
           <ul id="songList">
@@ -54,7 +58,10 @@ function SongList({ store, dispatch }) {
           />
         </>
       );
-    } else if (!(store.vibe.searchTerm && store.songs.songResponseList)) {
+    } else if (
+      !(store.vibe.searchTerm && store.songs.songResponseList) &&
+      !store.vibe.failedToLoadGeminiSuggestions
+    ) {
       return (
         <ul id="vibeSuggestionContainer">
           {store.vibe.vibeSuggestions.map((suggestion) => (
@@ -71,13 +78,13 @@ function SongList({ store, dispatch }) {
       let handleClick = () => {
         dispatch(getSongs(store.vibe.songNameList));
       };
-      if (store.vibe.failedToLoadGeminiSuggestions) {
-        errorMessage = "Failed to load AI suggestions";
+      if (store.songs.failedToCreatePlaylist) {
+        errorMessage = "Error creating playlist";
         handleClick = () => {
-          dispatch(getGeminiSuggestions());
+          dispatch(addPlaylist(store.vibe.songName));
         };
       } else if (store.vibe.failedToLoadGeminiResponse) {
-        errorMessage = "Failed to load AI response";
+        errorMessage = "Failed to load AI song responses";
         handleClick = () => {
           dispatch(getGeminiResponse(store.vibe.searchTerm));
         };
@@ -86,10 +93,10 @@ function SongList({ store, dispatch }) {
         handleClick = () => {
           dispatch(getSongs(store.vibe.songNameList));
         };
-      } else if (store.songs.failedToCreatePlaylist) {
-        errorMessage = "Error creating playlist";
+      } else if (store.vibe.failedToLoadGeminiSuggestions) {
+        errorMessage = "Failed to load AI vibe suggestions";
         handleClick = () => {
-          dispatch(addPlaylist(store.vibe.songName));
+          dispatch(getGeminiSuggestions());
         };
       }
       return (

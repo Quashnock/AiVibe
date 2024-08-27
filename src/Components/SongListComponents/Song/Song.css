@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: hsla(0, 0%, 10%, 50%);
+  background-color: hsla(0, 0%, 10%, 40%);
   border: solid hsla(0, 1%, 69%, 25%) 1px;
   border-radius: 1em;
   padding: 0.75em;
@@ -52,7 +52,7 @@ a {
   flex-direction: column;
   justify-content: center;
   height: 2.9em;
-  gap: 0.3em;
+  gap: 0.6em;
   text-wrap: nowrap;
 }
 #songTitle {
@@ -62,11 +62,6 @@ a {
   line-height: 80%;
   color: hsl(0, 0%, 80%);
   text-transform: capitalize;
-  transition: font-size 0.25s ease-out;
-}
-
-#songTitle:hover {
-  font-size: 1.5rem;
 }
 
 .artistName {
@@ -76,7 +71,7 @@ a {
 }
 
 .artistLink p {
-  font-weight: 100;
+  font-weight: 200;
   font-size: 0.95rem;
   line-height: 100%;
   color: hsl(0, 0%, 70%);
@@ -113,7 +108,7 @@ p:hover::before {
   gap: 0.5em;
 }
 #songLength {
-  font-weight: 100;
+  font-weight: 200;
   font-size: 0.95;
   letter-spacing: 0.033rem;
   color: hsl(0, 0%, 70%);

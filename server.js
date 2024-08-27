@@ -21,11 +21,15 @@ app.listen(5000, () => console.log(`Server is running on ${port}`));
 
 // API request
 app.get("/gemini", async (req, res) => {
-  const prompt = req.query.prompt;
-  const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  try {
+    const prompt = req.query.prompt;
+    const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-  res.send((await model.generateContent(prompt)).response.text());
+    res.send((await model.generateContent(prompt)).response.text());
+  } catch (err) {
+    res.send(new Error("Failed to get Gemini request"));
+  }
 });
 
 app.get("/spotify/login", async (req, res) => {
@@ -52,7 +56,7 @@ app.get("/spotify/login", async (req, res) => {
   const params = {
     response_type: "code",
     client_id: process.env.REACT_APP_SPOTIFY_API_KEY,
-    scope: scope, //I changed it from initial scope: scope to the new sopes to make it possible to create new Lists
+    scope: scope,
     code_challenge_method: "S256",
     code_challenge: code_challenge_base64,
     redirect_uri: redirectUrl,
