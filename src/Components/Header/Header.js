@@ -14,11 +14,7 @@ function Header({ title }) {
         </h2>
       </div>
       <div id="playlistTitleContainer" role="presentation">
-        <h1
-          id="playlistTitle"
-          className="animate"
-          aria-roledescription="Current Playlist Title"
-        >
+        <h1 id="playlistTitle" aria-roledescription="Current Playlist Title">
           {title || "Suggestions"}
         </h1>
       </div>

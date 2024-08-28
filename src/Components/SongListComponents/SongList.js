@@ -10,7 +10,6 @@ import {
 } from "../Search/vibeSlice.js";
 import VibeSuggestion from "./VibeSuggestion/VibeSuggestion.js";
 import { nanoid } from "@reduxjs/toolkit";
-import axios from "axios";
 
 function SongList({ store, dispatch }) {
   useEffect(() => {
@@ -148,7 +147,7 @@ function SongList({ store, dispatch }) {
                 "user-read-private user-read-email playlist-read-private playlist-modify-private playlist-modify-public",
               code_challenge_method: "S256",
               code_challenge: code_challenge_base64,
-              redirect_uri: "https://aivibe.netlify.app/",
+              redirect_uri: "http://localhost:3000",
             };
 
             authUrl.search = new URLSearchParams(params).toString();

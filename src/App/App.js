@@ -17,7 +17,7 @@ async function getToken(code) {
       client_id: process.env.REACT_APP_SPOTIFY_API_KEY,
       grant_type: "authorization_code",
       code: code,
-      redirect_uri: "https://aivibe.netlify.app/",
+      redirect_uri: "http://localhost:3000",
       code_verifier: localStorage.getItem("code_verifier"),
     }),
   });
@@ -56,7 +56,7 @@ if (code) {
       localStorage.setItem("id", (await getUserData()).id);
     } catch (error) {
       console.log(error);
-      window.location.href = "https://aivibe.netlify.app/";
+      window.location.href = "http://localhost:3000";
       localStorage.clear();
       alert("Error Loading Spotify API");
     }
