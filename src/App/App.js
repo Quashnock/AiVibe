@@ -8,15 +8,20 @@ const args = new URLSearchParams(window.location.search);
 const code = args.get("code");
 
 async function getToken(code) {
-  const params = {
-    method: "GET",
-    url: "http://localhost:5000/spotify/token",
-    params: {
-      code: code,
-      verifier: localStorage.getItem("code_verifier"),
+  const response = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-  };
-  return (await axios.request(params)).data;
+    body: new URLSearchParams({
+      client_id: process.env.REACT_APP_SPOTIFY_API_KEY,
+      grant_type: "authorization_code",
+      code: code,
+      redirect_uri: "https://aivibe.netlify.app/",
+      code_verifier: localStorage.getItem("code_verifier"),
+    }),
+  });
+  return await response.json();
 }
 
 async function getUserData() {

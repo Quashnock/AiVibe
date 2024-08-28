@@ -1,19 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 async function callGeminiAPI(prompt) {
   try {
-    const params = {
-      method: "GET",
-      url: "http://localhost:5000/gemini",
-      params: {
-        prompt: prompt,
-      },
-    };
-    console.log("Hello");
-    return (await axios.request(params)).data;
+    const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+    return (await model.generateContent(prompt)).response.text();
   } catch (err) {
-    return new Error("Failed to load Gemini response");
+    return new Error("Failed to get Gemini request");
   }
 }
 
@@ -31,6 +26,7 @@ export const getGeminiResponse = createAsyncThunk(
     if (playlistTitleResponse instanceof Error) {
       throw playlistTitleResponse;
     }
+
     return [songNamesResponse, playlistTitleResponse];
   }
 );
