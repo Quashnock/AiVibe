@@ -7,7 +7,6 @@ async function callGeminiAPI(prompt) {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const response = (await model.generateContent(prompt)).response.text();
-    console.log(`API return: ${response}`);
     return response;
   } catch (err) {
     return new Error("Failed to get Gemini request");
@@ -82,7 +81,6 @@ const vibeSlice = createSlice({
         const songSet = new Set(
           action.payload[0].split(" / ").map((song) => song.split("-"))
         );
-        console.log(songSet);
         state.songNameList = [...songSet];
       })
       .addCase(getGeminiResponse.rejected, (state) => {
@@ -90,7 +88,6 @@ const vibeSlice = createSlice({
         state.loadingGeminiResponse = false;
       })
       .addCase(getGeminiSuggestions.fulfilled, (state, action) => {
-        console.log(`Reducer Fulfilled, current payload: ${action.payload}`);
         state.vibeSuggestions = action.payload
           .split(" / ")
           .map((suggestion) => suggestion.split("-"));

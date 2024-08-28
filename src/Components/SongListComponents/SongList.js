@@ -17,7 +17,6 @@ function SongList({ store, dispatch }) {
   }, [store.vibe.songNameList, dispatch]);
 
   useEffect(() => {
-    console.log("Use Effect Triggered");
     dispatch(getGeminiSuggestions());
   }, [dispatch]);
 
@@ -61,9 +60,6 @@ function SongList({ store, dispatch }) {
       !(store.vibe.searchTerm && store.songs.songResponseList) &&
       !store.vibe.failedToLoadGeminiSuggestions
     ) {
-      console.log(
-        `Mapping Vibe Suggestions, current store.vibeSuggestions: ${store.vibe.vibeSuggestions}`
-      );
       return (
         <ul id="vibeSuggestionContainer">
           {store.vibe.vibeSuggestions.map((suggestion) => (
