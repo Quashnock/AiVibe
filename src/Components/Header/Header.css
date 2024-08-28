@@ -20,7 +20,7 @@ header {
 
 #playlistTitle {
   font-family: "Poppins", "Helvetica", sans-serif;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: hsl(0, 0%, 95%);
   font-weight: 900;
 }
@@ -62,5 +62,8 @@ hr#headerLineBreak {
 @media only screen and (min-width: 640px) {
   header {
     padding: 0 8% 0 8%;
+  }
+  #playlistTitle {
+    font-size: 2.5rem;
   }
 }
