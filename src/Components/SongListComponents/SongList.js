@@ -147,7 +147,7 @@ function SongList({ store, dispatch }) {
                 "user-read-private user-read-email playlist-read-private playlist-modify-private playlist-modify-public",
               code_challenge_method: "S256",
               code_challenge: code_challenge_base64,
-              redirect_uri: "http://localhost:3000",
+              redirect_uri: "https://aivibe.netlify.app/",
             };
 
             authUrl.search = new URLSearchParams(params).toString();
