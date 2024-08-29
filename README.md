@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# AiVibe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This project is my final open-ended project in the Codecademy Frontend Career Path certification. In this project I wanted to challenge myself in both design and implementation complexity by creating a unique look for the website while implementing both the Google Gemini AI API and the Spotify API. The idea for this project came to me while on a walk where I found myself looking on YouTube to find and make a playlist fitting the vibe of the walk I was on.
 
-In the project directory, you can run:
+## Features
+This project first requires you to login with your spotify account to authorize it to make a playlist. From there you can enter a vibe for your playlist into the prompt bar or choose one of the AI suggested prompts. The app will then generate a list of songs that link directly to the song, artist/s and album on spotify. Finally, you can then create a Spotify playlist of these songs by pressing the "Add to Playlist" button at the bottom of the song list.
 
-### `npm start`
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- React
+- Redux
+- Netlify
+- Google Gemini API
+- Spotify API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Credits
+### Logos / Icons:
+- Spotify logo by [Pictogrammers](https://github.com/Templarian/MaterialDesign)
+- Music Favicon by [Phosphor Icons](https://github.com/phosphor-icons/core)
+- Up Arrow icon by [HeskeyBaozi](https://github.com/ant-design/ant-design-icons)
+### Spotify PKCE Authorization Code
+The approach for getting and handling Spotify token authorization was based off of the [template](https://github.com/spotify/web-api-examples/tree/master/authorization/authorization_code_pkce) created by GitHub user [alnacle](https://github.com/alnacle)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Future Work
+Allow users to manually search for songs and add them to the playlist
