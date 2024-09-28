@@ -23,7 +23,7 @@ This project first requires you to login with your spotify account to authorize 
 - Music Favicon by [Phosphor Icons](https://github.com/phosphor-icons/core)
 - Up Arrow icon by [HeskeyBaozi](https://github.com/ant-design/ant-design-icons)
 ### Spotify PKCE Authorization Code
-The approach for getting and handling Spotify token authorization was based off of the [template](https://github.com/spotify/web-api-examples/tree/master/authorization/authorization_code_pkce) created by GitHub user [alnacle](https://github.com/alnacle)
+The approach for getting and handling Spotify token authorization was based off of the [example](https://github.com/spotify/web-api-examples/tree/master/authorization/authorization_code_pkce) created by GitHub user [alnacle](https://github.com/alnacle)
 
 ## Future Work
 Allow users to manually search for songs and add them to the playlist
