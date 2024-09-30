@@ -1,4 +1,5 @@
 # AiVibe
+[Live Demo](https://aivibe.netlify.app/)
 
 ## Description
 
