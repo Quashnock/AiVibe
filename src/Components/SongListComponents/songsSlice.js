@@ -7,8 +7,11 @@ export const getSongs = createAsyncThunk("songs/getSongs", async (songs) => {
   const songSet = new Set();
   return Promise.all(
     songs.map(async (song) => {
+      const track = encodeURIComponent(song[0]);
+      const artist = encodeURIComponent(song[1]);
+      const query = `track:${track}artist:${artist}`;
       const response = await fetch(
-        `https://api.spotify.com/v1/search?q=track%253${song[0]}%252520artist%253${song[1]}&type=track&limit=1&offset=0`,
+        `https://api.spotify.com/v1/search?q=${query}&type=track&limit=1&offset=0`,
         {
           method: "GET",
           headers: {

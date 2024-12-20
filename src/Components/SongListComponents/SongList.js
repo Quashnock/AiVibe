@@ -114,7 +114,7 @@ function SongList({ store, dispatch }) {
 
   return (
     <main id="songListContainer" role="presentation">
-      {Date.now() < window.localStorage.getItem("expires") ? (
+      {Date.now() < localStorage.getItem("expires") ? (
         renderList(store.songs.songResponseList)
       ) : (
         <ButtonUI
