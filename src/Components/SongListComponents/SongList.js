@@ -2,7 +2,7 @@ import ButtonUI from "./Button/ButtonUI.js";
 import { addPlaylist, getSongs } from "./songsSlice.js";
 import Song from "./Song/Song.js";
 import "./SongList.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
   getGeminiSuggestions,
   setSearchTerm,
@@ -12,13 +12,23 @@ import VibeSuggestion from "./VibeSuggestion/VibeSuggestion.js";
 import { nanoid } from "@reduxjs/toolkit";
 
 function SongList({ store, dispatch }) {
+  const suggestionsInitialized = useRef(false);
+  
   useEffect(() => {
     dispatch(getSongs(store.vibe.songNameList));
   }, [store.vibe.songNameList, dispatch]);
 
   useEffect(() => {
-    dispatch(getGeminiSuggestions());
-  }, [dispatch]);
+    if (
+      !suggestionsInitialized.current && 
+      store.vibe.vibeSuggestions.length === 0 && 
+      !store.vibe.loadingGeminiResponse && 
+      !store.vibe.failedToLoadGeminiSuggestions
+    ) {
+      suggestionsInitialized.current = true;
+      dispatch(getGeminiSuggestions());
+    }
+  }, [dispatch, store.vibe.vibeSuggestions.length, store.vibe.loadingGeminiResponse, store.vibe.failedToLoadGeminiSuggestions]);
 
   function renderList(songList) {
     if (store.songs.loadingSongs || store.vibe.loadingGeminiResponse) {
@@ -94,6 +104,7 @@ function SongList({ store, dispatch }) {
       } else if (store.vibe.failedToLoadGeminiSuggestions) {
         errorMessage = "Failed to load AI vibe suggestions";
         handleClick = () => {
+          suggestionsInitialized.current = false; // Reset the ref so the effect can run again
           dispatch(getGeminiSuggestions());
         };
       }
