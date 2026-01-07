@@ -103,6 +103,7 @@ function SongList({ store, dispatch }) {
         };
       } else if (store.vibe.failedToLoadGeminiSuggestions) {
         errorMessage = "Failed to load AI vibe suggestions";
+        console.log("Hello");
         handleClick = () => {
           suggestionsInitialized.current = false; // Reset the ref so the effect can run again
           dispatch(getGeminiSuggestions());

@@ -56,7 +56,7 @@ if (code) {
       localStorage.setItem("id", (await getUserData()).id);
     } catch (error) {
       console.log(error);
-      window.location.href = "https://aivibe.netlify.app/";
+      window.location.href = "http://localhost:8888/";
       localStorage.clear();
       alert("Error Loading Spotify API");
     }
