@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function handler(event, context) {
   try {
-    console.log("HELLO");
+    console.log("BODY:", event.body);
     const { prompt } = JSON.parse(event.body);
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
