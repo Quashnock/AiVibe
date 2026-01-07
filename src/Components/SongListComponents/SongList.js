@@ -105,6 +105,7 @@ function SongList({ store, dispatch }) {
         errorMessage = "Failed to load AI vibe suggestions";
         console.log("Hello");
         handleClick = () => {
+          console.log("HELLO WORLD");
           suggestionsInitialized.current = false; // Reset the ref so the effect can run again
           dispatch(getGeminiSuggestions());
         };
