@@ -13,22 +13,27 @@ import { nanoid } from "@reduxjs/toolkit";
 
 function SongList({ store, dispatch }) {
   const suggestionsInitialized = useRef(false);
-  
+
   useEffect(() => {
     dispatch(getSongs(store.vibe.songNameList));
   }, [store.vibe.songNameList, dispatch]);
 
   useEffect(() => {
     if (
-      !suggestionsInitialized.current && 
-      store.vibe.vibeSuggestions.length === 0 && 
-      !store.vibe.loadingGeminiResponse && 
+      !suggestionsInitialized.current &&
+      store.vibe.vibeSuggestions.length === 0 &&
+      !store.vibe.loadingGeminiResponse &&
       !store.vibe.failedToLoadGeminiSuggestions
     ) {
       suggestionsInitialized.current = true;
       dispatch(getGeminiSuggestions());
     }
-  }, [dispatch, store.vibe.vibeSuggestions.length, store.vibe.loadingGeminiResponse, store.vibe.failedToLoadGeminiSuggestions]);
+  }, [
+    dispatch,
+    store.vibe.vibeSuggestions.length,
+    store.vibe.loadingGeminiResponse,
+    store.vibe.failedToLoadGeminiSuggestions,
+  ]);
 
   function renderList(songList) {
     if (store.songs.loadingSongs || store.vibe.loadingGeminiResponse) {
@@ -103,9 +108,7 @@ function SongList({ store, dispatch }) {
         };
       } else if (store.vibe.failedToLoadGeminiSuggestions) {
         errorMessage = "Failed to load AI vibe suggestions";
-        console.log("Hello");
         handleClick = () => {
-          console.log("HELLO WORLD");
           suggestionsInitialized.current = false; // Reset the ref so the effect can run again
           dispatch(getGeminiSuggestions());
         };
